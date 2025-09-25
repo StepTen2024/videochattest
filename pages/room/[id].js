@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import VideoCall from '@/components/VideoCall'
-import Controls from '@/components/Controls'
-import Chat from '@/components/Chat'
+import VideoCall from '../../components/VideoCall'
+import Controls from '../../components/Controls'
+import Chat from '../../components/Chat'
 import { Copy, Users, MessageSquare, Settings, Phone } from 'lucide-react'
 
 export default function Room() {
