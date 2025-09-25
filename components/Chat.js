@@ -190,6 +190,3 @@ export default function Chat({ isOpen, onClose, roomId, participants }) {
     </div>
   )
 }
-
-// Import missing icon
-import { MessageSquare } from 'lucide-react'

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProMeet - Professional Video Conferencing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎥</text></svg>">
+    <script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎥</span>
+                <h1>ProMeet</h1>
+            </div>
+            <div class="header-actions">
+                <span class="time" id="current-time"></span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Start Meeting Section -->
+            <div id="start-section" class="section active">
+                <div class="hero">
+                    <h2>Start Your Meeting</h2>
+                    <p>Create a professional video conference room and invite participants</p>
+                </div>
+
+                <div class="preview-container">
+                    <div class="video-preview">
+                        <video id="preview-video" autoplay muted playsinline></video>
+                        <div class="preview-overlay">
+                            <div class="preview-controls">
+                                <button id="toggle-preview-video" class="control-btn active">
+                                    <span class="icon">📹</span>
+                                </button>
+                                <button id="toggle-preview-audio" class="control-btn active">
+                                    <span class="icon">🎤</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="start-actions">
+                    <button id="start-meeting" class="btn btn-primary">
+                        <span class="icon">🚀</span>
+                        Start Meeting
+                    </button>
+                    <button id="test-devices" class="btn btn-secondary">
+                        <span class="icon">⚙️</span>
+                        Test Camera & Mic
+                    </button>
+                </div>
+            </div>
+
+            <!-- Meeting Room Section -->
+            <div id="meeting-section" class="section">
+                <div class="meeting-header">
+                    <div class="meeting-info">
+                        <h3 id="meeting-title">Meeting Room</h3>
+                        <span id="meeting-id" class="meeting-id"></span>
+                    </div>
+                    <div class="meeting-actions">
+                        <button id="copy-link" class="btn btn-outline">
+                            <span class="icon">📋</span>
+                            Copy Invite Link
+                        </button>
+                        <button id="share-meeting" class="btn btn-outline">
+                            <span class="icon">📤</span>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-grid" id="video-grid">
+                    <div class="video-container local">
+                        <video id="local-video" autoplay muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="participant-name">You (Host)</div>
+                            <div class="video-status">
+                                <span class="status-indicator audio" id="local-audio-status"></span>
+                                <span class="status-indicator video" id="local-video-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meeting-controls">
+                    <div class="control-group">
+                        <button id="toggle-audio" class="control-btn active" title="Mute/Unmute">
+                            <span class="icon">🎤</span>
+                        </button>
+                        <button id="toggle-video" class="control-btn active" title="Start/Stop Video">
+                            <span class="icon">📹</span>
+                        </button>
+                        <button id="share-screen" class="control-btn" title="Share Screen">
+                            <span class="icon">🖥️</span>
+                        </button>
+                    </div>
+                    
+                    <div class="control-group">
+                        <button id="toggle-chat" class="control-btn" title="Chat">
+                            <span class="icon">💬</span>
+                        </button>
+                        <button id="participants" class="control-btn" title="Participants">
+                            <span class="icon">👥</span>
+                            <span class="participant-count">1</span>
+                        </button>
+                    </div>
+
+                    <button id="leave-meeting" class="control-btn danger" title="Leave Meeting">
+                        <span class="icon">📞</span>
+                    </button>
+                </div>
+
+                <!-- Chat Sidebar -->
+                <div id="chat-sidebar" class="chat-sidebar">
+                    <div class="chat-header">
+                        <h4>Chat</h4>
+                        <button id="close-chat" class="close-btn">×</button>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="system-message">
+                            <span class="icon">ℹ️</span>
+                            Meeting started. Share the invite link to add participants.
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="message-input" placeholder="Type a message...">
+                        <button id="send-message" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waiting Section -->
+            <div id="waiting-section" class="section">
+                <div class="waiting-content">
+                    <div class="spinner"></div>
+                    <h3>Setting up your meeting room...</h3>
+                    <p>Please wait while we prepare everything for you.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Connection Quality Indicator -->
+        <div class="connection-indicator" id="connection-indicator">
+            <div class="signal-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <span class="connection-text">Excellent</span>
+        </div>
+
+        <!-- Notifications -->
+        <div id="notification-container" class="notification-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
